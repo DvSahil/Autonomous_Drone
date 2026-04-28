@@ -1,0 +1,20 @@
+# ADDC Drone QR Scanner — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core QR scanning
+opencv-python>=4.8.0
+pyzbar>=0.1.9
+
+# Drone flight control
+dronekit>=2.9.2
+pymavlink>=2.4.41
+
+# Networking
+requests>=2.31.0
+flask>=3.0.0          # For judge_server.py only
+
+# Raspberry Pi GPIO (install only on Pi)
+# RPi.GPIO>=0.7.1
+
+# Utilities
+Pillow>=10.0.0
