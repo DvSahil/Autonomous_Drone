@@ -1,0 +1,74 @@
+ROS 2 QR Detection Setup Instructions
+
+1. Install Dependencies
+-----------------------
+pip install opencv-python
+sudo apt update
+sudo apt install ros-humble-cv-bridge
+
+(Replace 'humble' with your ROS2 distro if needed)
+
+--------------------------------------------------
+
+2. Create ROS2 Workspace
+------------------------
+mkdir -p ~/drone_ws/src
+cd ~/drone_ws/src
+
+--------------------------------------------------
+
+3. Create Package
+-----------------
+ros2 pkg create --build-type ament_python drone_pkg
+
+--------------------------------------------------
+
+4. Add Python File
+------------------
+Copy 'ros2_qr_node.py' into:
+~/drone_ws/src/drone_pkg/drone_pkg/
+
+--------------------------------------------------
+
+5. Modify setup.py
+------------------
+Add entry point:
+
+'console_scripts': [
+    'qr_node = drone_pkg.ros2_qr_node:main',
+],
+
+--------------------------------------------------
+
+6. Build Workspace
+------------------
+cd ~/drone_ws
+colcon build
+
+--------------------------------------------------
+
+7. Source Workspace
+-------------------
+source install/setup.bash
+
+--------------------------------------------------
+
+8. Run Node
+-----------
+ros2 run drone_pkg qr_node
+
+--------------------------------------------------
+
+9. Expected Output
+------------------
+- Node subscribes to /camera/image_raw
+- Detects QR code
+- Prints detected data
+- Publishes to /qr_data
+
+--------------------------------------------------
+
+NOTE:
+You need a camera node running that publishes images to /camera/image_raw
+
+--------------------------------------------------
